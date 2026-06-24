@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Z1NTY // Key Bypass</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #0af;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .fog-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .fog-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(0,120,255,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 50%, rgba(0,150,255,0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(0,100,255,0.06) 0%, transparent 70%);
+            animation: fogMove 12s ease-in-out infinite;
+        }
+        .fog-layer:nth-child(2) { animation-delay: -6s; opacity: 0.7; }
+        @keyframes fogMove {
+            0%, 100% { transform: scale(1) translateY(0); }
+            25% { transform: scale(1.05) translateY(-1vh); }
+            50% { transform: scale(1.02) translateY(1vh); }
+            75% { transform: scale(1.04) translateY(-0.5vh); }
+        }
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 550px;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid #0af;
+            border-radius: 30px;
+            padding: 35px 25px;
+            box-shadow: 0 0 80px rgba(0, 170, 255, 0.25), inset 0 0 30px rgba(0, 170, 255, 0.05);
+            text-align: center;
+            animation: cardIn 0.8s ease;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .glitch-title {
+            font-size: clamp(26px, 5vw, 36px);
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #0af;
+            text-shadow: 0 0 20px #0af, 0 0 40px #0af, 0 0 60px #08c;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+            animation: glitch 2.5s infinite;
+        }
+        .glitch-title::before,
+        .glitch-title::after {
+            content: 'Z1NTY KEY BYPASS';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.7;
+        }
+        .glitch-title::before {
+            color: #0af;
+            z-index: -1;
+            animation: glitch-anim-1 0.35s infinite alternate-reverse;
+        }
+        .glitch-title::after {
+            color: #f0a;
+            z-index: -2;
+            animation: glitch-anim-2 0.45s infinite alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(20% 0 30% 0); transform: translate(-4px, 4px); }
+            40% { clip-path: inset(50% 0 10% 0); transform: translate(4px, -3px); }
+            60% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, 3px); }
+            80% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -4px); }
+        }
+        @keyframes glitch-anim-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(4px, -4px); }
+            40% { clip-path: inset(20% 0 50% 0); transform: translate(-4px, 3px); }
+            60% { clip-path: inset(30% 0 40% 0); transform: translate(3px, 4px); }
+            80% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, -3px); }
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #0af;
+            opacity: 0.8;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #0af;
+        }
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid #0af;
+            border-radius: 50px;
+            color: #0af;
+            font-size: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0,170,255,0.2), inset 0 0 15px rgba(0,170,255,0.1);
+            outline: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            box-shadow: 0 0 40px rgba(0,170,255,0.5), inset 0 0 20px rgba(0,170,255,0.2);
+            border-color: #4af;
+        }
+        .input-field::placeholder {
+            color: rgba(0,170,255,0.4);
+            font-size: 13px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 2px solid #0af;
+            border-radius: 50px;
+            color: #0af;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 25px rgba(0,170,255,0.3), inset 0 0 10px rgba(0,170,255,0.1);
+            text-shadow: 0 0 12px #0af;
+            margin-bottom: 20px;
+        }
+        .btn:hover {
+            background: #0af;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #0af;
+            transform: scale(1.03);
+            text-shadow: none;
+        }
+        .btn:active { transform: scale(0.98); }
+        .result-box {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,170,255,0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .result-box.show { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .result-key {
+            font-family: monospace;
+            font-size: 16px;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        .result-error {
+            color: #f55;
+            text-shadow: 0 0 10px #f55;
+        }
+        .loading-text {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .copy-key-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: rgba(0,255,100,0.1);
+            border: 1px solid #0f0;
+            border-radius: 20px;
+            color: #0f0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .copy-key-btn:hover {
+            background: #0f0;
+            color: #000;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #046;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-align: center;
+            text-shadow: 0 0 10px #046;
+        }
+    </style>
+</head>
+<body>
+    <div class="fog-container"><div class="fog-layer"></div><div class="fog-layer"></div></div>
+
+    <div class="main-container">
+        <div class="card">
+            <div class="glitch-title">Z1NTY KEY BYPASS</div>
+            <div class="subtitle">Обход ключей за секунды</div>
+            
+            <input type="text" class="input-field" id="linkInput" placeholder="Вставь ссылку auth.platorelay.com или linkvertise.com...">
+            <button class="btn" id="bypassBtn" onclick="startBypass()">🔓 ОБОЙТИ</button>
+            
+            <div class="loading-text" id="loadingText" style="display:none;">⏳ Обхожу ссылку, подожди...</div>
+            
+            <div class="result-box" id="resultBox">
+                <div id="resultContent"></div>
+            </div>
+        </div>
+        <div class="footer">█ Z1NTY PROJECT // BYPASS EDITION █</div>
+    </div>
+
+    <script>
+        // Твой API-ключ от BypassTools
+        const BYPASS_KEY = 'bt_9ce0dc7a030a8dd52e2def9614aab0a77f0a2a2a8fecadd2';
+
+        async function startBypass() {
+            const link = document.getElementById('linkInput').value.trim();
+            if (!link) {
+                alert('Вставь ссылку для обхода!');
+                return;
+            }
+
+            const btn = document.getElementById('bypassBtn');
+            const loadingText = document.getElementById('loadingText');
+            const resultBox = document.getElementById('resultBox');
+            const resultContent = document.getElementById('resultContent');
+
+            // Показываем загрузку
+            btn.disabled = true;
+            btn.innerText = '⏳ ОБХОЖУ...';
+            loadingText.style.display = 'block';
+            resultBox.classList.remove('show');
+
+            try {
+                // Способ 1: Прямой запрос к BypassTools API (может сработать, если CORS разрешён)
+                const directUrl = `https://bypass.tools/api/bypass?key=${BYPASS_KEY}&url=${encodeURIComponent(link)}`;
+                let res = await fetch(directUrl);
+                
+                // Если прямой запрос не сработал из-за CORS, пробуем через прокси
+                if (!res.ok || res.status === 0) {
+                    throw new Error('Прямой запрос не сработал');
+                }
+                
+                let data = await res.json();
+                
+                loadingText.style.display = 'none';
+                resultBox.classList.add('show');
+                
+                if (data && data.key) {
+                    resultContent.innerHTML = `
+                        <div style="color:#0f0;font-weight:700;margin-bottom:8px;">✅ Ключ успешно получен через API!</div>
+                        <div class="result-key" id="bypassKey">${data.key}</div>
+                        <button class="copy-key-btn" onclick="copyKey()">📋 Скопировать ключ</button>
+                    `;
+                } else if (data && data.error) {
+                    resultContent.innerHTML = `<div class="result-error">❌ Ошибка API: ${data.error}</div>`;
+                } else {
+                    resultContent.innerHTML = `<div class="result-error">❌ Не удалось обойти ссылку.</div>`;
+                }
+            } catch (e) {
+                // Способ 2: Если прямой запрос не сработал — открываем bypass.tools
+                loadingText.style.display = 'none';
+                resultBox.classList.add('show');
+                resultContent.innerHTML = `
+                    <div style="color:#0af;margin-bottom:10px;">⚠️ Автообход через API не сработал (CORS).</div>
+                    <div style="color:#ccc;margin-bottom:10px;">Открываем bypass.tools для ручного обхода...</div>
+                `;
+                setTimeout(() => {
+                    window.open(`https://bypass.tools/?url=${encodeURIComponent(link)}`, '_blank');
+                }, 500);
+            }
+
+            // Возвращаем кнопку
+            btn.disabled = false;
+            btn.innerText = '🔓 ОБОЙТИ';
+        }
+
+        function copyKey() {
+            const key = document.getElementById('bypassKey').innerText;
+            navigator.clipboard.writeText(key).then(() => {
+                const btn = document.querySelector('.copy-key-btn');
+                btn.innerText = '✅ Скопировано!';
+                setTimeout(() => { btn.innerText = '📋 Скопировать ключ'; }, 2000);
+            }).catch(() => alert('Не удалось скопировать. Скопируй вручную.'));
+        }
+
+        // Отправка по Enter
+        document.getElementById('linkInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') startBypass();
+        });
+
+        console.log('✅ Z1NTY Key Bypass загружен!');
+    </script>
+</body>
+</html>
