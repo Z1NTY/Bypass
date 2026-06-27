@@ -28,17 +28,17 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 20% 50%, rgba(0,120,255,0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 50%, rgba(0,150,255,0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 50%, rgba(0,100,255,0.06) 0%, transparent 70%);
-            animation: fogMove 12s ease-in-out infinite;
+            background: radial-gradient(ellipse at 20% 50%, rgba(0,120,255,0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 50%, rgba(0,150,255,0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(0,100,255,0.1) 0%, transparent 70%);
+            animation: fogMove 10s ease-in-out infinite;
         }
-        .fog-layer:nth-child(2) { animation-delay: -6s; opacity: 0.7; }
+        .fog-layer:nth-child(2) { animation-delay: -5s; opacity: 0.6; }
         @keyframes fogMove {
             0%, 100% { transform: scale(1) translateY(0); }
-            25% { transform: scale(1.05) translateY(-1vh); }
-            50% { transform: scale(1.02) translateY(1vh); }
-            75% { transform: scale(1.04) translateY(-0.5vh); }
+            25% { transform: scale(1.06) translateY(-1.5vh); }
+            50% { transform: scale(1.03) translateY(1.5vh); }
+            75% { transform: scale(1.05) translateY(-0.5vh); }
         }
         .main-container {
             position: relative;
@@ -49,24 +49,31 @@
         }
         .card {
             background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid #0af;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 170, 255, 0.5);
             border-radius: 30px;
-            padding: 35px 25px;
-            box-shadow: 0 0 80px rgba(0, 170, 255, 0.25), inset 0 0 30px rgba(0, 170, 255, 0.05);
+            padding: 40px 30px;
+            box-shadow: 0 0 100px rgba(0, 170, 255, 0.3), inset 0 0 40px rgba(0, 170, 255, 0.08);
             text-align: center;
-            animation: cardIn 0.8s ease;
+            animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes cardIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        .neon-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(0, 170, 255, 0.8)) drop-shadow(0 0 30px rgba(0, 170, 255, 0.5));
+            text-shadow: 0 0 20px #0af, 0 0 40px #0af, 0 0 60px #08c;
         }
         .glitch-title {
-            font-size: clamp(26px, 5vw, 36px);
+            font-size: clamp(26px, 5vw, 38px);
             font-weight: 900;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             color: #0af;
-            text-shadow: 0 0 20px #0af, 0 0 40px #0af, 0 0 60px #08c;
+            text-shadow: 0 0 25px #0af, 0 0 50px #0af, 0 0 70px #08c;
             margin-bottom: 8px;
             position: relative;
             display: inline-block;
@@ -78,67 +85,70 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            opacity: 0.7;
+            opacity: 0.6;
         }
         .glitch-title::before {
             color: #0af;
             z-index: -1;
-            animation: glitch-anim-1 0.35s infinite alternate-reverse;
+            animation: glitch-anim-1 0.4s infinite alternate-reverse;
         }
         .glitch-title::after {
             color: #f0a;
             z-index: -2;
-            animation: glitch-anim-2 0.45s infinite alternate-reverse;
+            animation: glitch-anim-2 0.5s infinite alternate-reverse;
         }
         @keyframes glitch-anim-1 {
             0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(20% 0 30% 0); transform: translate(-4px, 4px); }
-            40% { clip-path: inset(50% 0 10% 0); transform: translate(4px, -3px); }
-            60% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, 3px); }
-            80% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -4px); }
+            20% { clip-path: inset(25% 0 35% 0); transform: translate(-5px, 5px); }
+            40% { clip-path: inset(55% 0 15% 0); transform: translate(5px, -4px); }
+            60% { clip-path: inset(15% 0 65% 0); transform: translate(-4px, 4px); }
+            80% { clip-path: inset(85% 0 8% 0); transform: translate(4px, -5px); }
         }
         @keyframes glitch-anim-2 {
             0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(4px, -4px); }
-            40% { clip-path: inset(20% 0 50% 0); transform: translate(-4px, 3px); }
-            60% { clip-path: inset(30% 0 40% 0); transform: translate(3px, 4px); }
-            80% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, -3px); }
+            20% { clip-path: inset(65% 0 15% 0); transform: translate(5px, -5px); }
+            40% { clip-path: inset(25% 0 55% 0); transform: translate(-5px, 4px); }
+            60% { clip-path: inset(35% 0 45% 0); transform: translate(4px, 5px); }
+            80% { clip-path: inset(8% 0 85% 0); transform: translate(-4px, -4px); }
         }
         .subtitle {
             font-size: 14px;
-            color: #0af;
-            opacity: 0.8;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px #0af;
+            color: rgba(0, 170, 255, 0.8);
+            letter-spacing: 4px;
+            margin-bottom: 35px;
+            text-shadow: 0 0 12px rgba(0, 170, 255, 0.6);
+            text-transform: uppercase;
         }
         .input-field {
             width: 100%;
-            padding: 16px 20px;
-            background: rgba(0,0,0,0.6);
+            padding: 16px 22px;
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            border: 2px solid #0af;
+            border: 2px solid rgba(0, 170, 255, 0.5);
             border-radius: 50px;
             color: #0af;
             font-size: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(0,170,255,0.2), inset 0 0 15px rgba(0,170,255,0.1);
+            box-shadow: 0 0 25px rgba(0, 170, 255, 0.25), inset 0 0 15px rgba(0, 170, 255, 0.1);
             outline: none;
             text-align: center;
             transition: all 0.3s ease;
+            letter-spacing: 1px;
         }
         .input-field:focus {
-            box-shadow: 0 0 40px rgba(0,170,255,0.5), inset 0 0 20px rgba(0,170,255,0.2);
+            box-shadow: 0 0 50px rgba(0, 170, 255, 0.6), inset 0 0 25px rgba(0, 170, 255, 0.2);
             border-color: #4af;
+            transform: scale(1.02);
         }
         .input-field::placeholder {
-            color: rgba(0,170,255,0.4);
+            color: rgba(0, 170, 255, 0.35);
             font-size: 13px;
+            letter-spacing: 2px;
         }
         .btn {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             background: transparent;
             border: 2px solid #0af;
             border-radius: 50px;
@@ -146,77 +156,40 @@
             font-size: 20px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 25px rgba(0,170,255,0.3), inset 0 0 10px rgba(0,170,255,0.1);
-            text-shadow: 0 0 12px #0af;
-            margin-bottom: 20px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 30px rgba(0, 170, 255, 0.4), inset 0 0 15px rgba(0, 170, 255, 0.1);
+            text-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 170, 255, 0.5), transparent);
+            transition: left 0.5s;
         }
         .btn:hover {
             background: #0af;
             color: #000;
             border-color: #fff;
-            box-shadow: 0 0 60px #0af;
-            transform: scale(1.03);
+            box-shadow: 0 0 70px #0af, 0 0 100px #0af;
+            transform: scale(1.04);
             text-shadow: none;
+            letter-spacing: 6px;
         }
-        .btn:active { transform: scale(0.98); }
-        .result-box {
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,170,255,0.3);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .result-box.show { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .result-key {
-            font-family: monospace;
-            font-size: 16px;
-            color: #0f0;
-            text-shadow: 0 0 10px #0f0;
-            word-break: break-all;
-            margin: 10px 0;
-        }
-        .result-error {
-            color: #f55;
-            text-shadow: 0 0 10px #f55;
-        }
-        .loading-text {
-            color: #aaa;
-            font-style: italic;
-            margin-top: 15px;
-        }
-        .copy-key-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: rgba(0,255,100,0.1);
-            border: 1px solid #0f0;
-            border-radius: 20px;
-            color: #0f0;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .copy-key-btn:hover {
-            background: #0f0;
-            color: #000;
-        }
+        .btn:hover::before { left: 100%; }
+        .btn:active { transform: scale(0.97); }
         .footer {
             margin-top: 30px;
-            color: #046;
+            color: rgba(0, 100, 180, 0.7);
             font-size: 12px;
             letter-spacing: 3px;
             text-align: center;
-            text-shadow: 0 0 10px #046;
+            text-shadow: 0 0 10px rgba(0, 100, 180, 0.5);
         }
     </style>
 </head>
@@ -225,97 +198,62 @@
 
     <div class="main-container">
         <div class="card">
+            <span class="neon-icon">🔑</span>
             <div class="glitch-title">Z1NTY KEY BYPASS</div>
-            <div class="subtitle">Обход ключей за секунды</div>
+            <div class="subtitle">Мгновенный обход ключей</div>
             
-            <input type="text" class="input-field" id="linkInput" placeholder="Вставь ссылку auth.platorelay.com или linkvertise.com...">
-            <button class="btn" id="bypassBtn" onclick="startBypass()">🔓 ОБОЙТИ</button>
-            
-            <div class="loading-text" id="loadingText" style="display:none;">⏳ Обхожу ссылку, подожди...</div>
-            
-            <div class="result-box" id="resultBox">
-                <div id="resultContent"></div>
-            </div>
+            <input type="text" class="input-field" id="linkInput" placeholder="Вставь ссылку auth.platorelay.com...">
+            <button class="btn" onclick="startBypass()">🔓 ОБОЙТИ</button>
         </div>
         <div class="footer">█ Z1NTY PROJECT // BYPASS EDITION █</div>
     </div>
 
     <script>
-        // Твой API-ключ от BypassTools
-        const BYPASS_KEY = 'bt_9ce0dc7a030a8dd52e2def9614aab0a77f0a2a2a8fecadd2';
-
-        async function startBypass() {
+        function startBypass() {
             const link = document.getElementById('linkInput').value.trim();
             if (!link) {
                 alert('Вставь ссылку для обхода!');
                 return;
             }
 
-            const btn = document.getElementById('bypassBtn');
-            const loadingText = document.getElementById('loadingText');
-            const resultBox = document.getElementById('resultBox');
-            const resultContent = document.getElementById('resultContent');
+            // Открываем bypass.tools с уже вставленной ссылкой
+            const bypassUrl = `https://bypass.tools/?url=${encodeURIComponent(link)}`;
+            const newWindow = window.open(bypassUrl, '_blank');
 
-            // Показываем загрузку
-            btn.disabled = true;
-            btn.innerText = '⏳ ОБХОЖУ...';
-            loadingText.style.display = 'block';
-            resultBox.classList.remove('show');
-
-            try {
-                // Способ 1: Прямой запрос к BypassTools API (может сработать, если CORS разрешён)
-                const directUrl = `https://bypass.tools/api/bypass?key=${BYPASS_KEY}&url=${encodeURIComponent(link)}`;
-                let res = await fetch(directUrl);
-                
-                // Если прямой запрос не сработал из-за CORS, пробуем через прокси
-                if (!res.ok || res.status === 0) {
-                    throw new Error('Прямой запрос не сработал');
-                }
-                
-                let data = await res.json();
-                
-                loadingText.style.display = 'none';
-                resultBox.classList.add('show');
-                
-                if (data && data.key) {
-                    resultContent.innerHTML = `
-                        <div style="color:#0f0;font-weight:700;margin-bottom:8px;">✅ Ключ успешно получен через API!</div>
-                        <div class="result-key" id="bypassKey">${data.key}</div>
-                        <button class="copy-key-btn" onclick="copyKey()">📋 Скопировать ключ</button>
-                    `;
-                } else if (data && data.error) {
-                    resultContent.innerHTML = `<div class="result-error">❌ Ошибка API: ${data.error}</div>`;
-                } else {
-                    resultContent.innerHTML = `<div class="result-error">❌ Не удалось обойти ссылку.</div>`;
-                }
-            } catch (e) {
-                // Способ 2: Если прямой запрос не сработал — открываем bypass.tools
-                loadingText.style.display = 'none';
-                resultBox.classList.add('show');
-                resultContent.innerHTML = `
-                    <div style="color:#0af;margin-bottom:10px;">⚠️ Автообход через API не сработал (CORS).</div>
-                    <div style="color:#ccc;margin-bottom:10px;">Открываем bypass.tools для ручного обхода...</div>
-                `;
+            // Пытаемся автоматически нажать кнопку Bypass после загрузки
+            if (newWindow) {
                 setTimeout(() => {
-                    window.open(`https://bypass.tools/?url=${encodeURIComponent(link)}`, '_blank');
-                }, 500);
+                    try {
+                        newWindow.postMessage({ action: 'bypass' }, '*');
+                        
+                        // Альтернативный способ: вставляем скрипт в новое окно
+                        const script = `
+                            (function() {
+                                setTimeout(function() {
+                                    var buttons = document.querySelectorAll('button');
+                                    for (var i = 0; i < buttons.length; i++) {
+                                        if (buttons[i].textContent.toLowerCase().indexOf('bypass') !== -1 ||
+                                            buttons[i].textContent.toLowerCase().indexOf('submit') !== -1 ||
+                                            buttons[i].type === 'submit') {
+                                            buttons[i].click();
+                                            break;
+                                        }
+                                    }
+                                }, 2500);
+                            })();
+                        `;
+                        
+                        // Пробуем выполнить скрипт в новом окне
+                        const scriptEl = newWindow.document.createElement('script');
+                        scriptEl.textContent = script;
+                        newWindow.document.body.appendChild(scriptEl);
+                    } catch (e) {
+                        console.log('Автоклик не сработал, пользователь нажмёт вручную');
+                    }
+                }, 3000);
             }
-
-            // Возвращаем кнопку
-            btn.disabled = false;
-            btn.innerText = '🔓 ОБОЙТИ';
         }
 
-        function copyKey() {
-            const key = document.getElementById('bypassKey').innerText;
-            navigator.clipboard.writeText(key).then(() => {
-                const btn = document.querySelector('.copy-key-btn');
-                btn.innerText = '✅ Скопировано!';
-                setTimeout(() => { btn.innerText = '📋 Скопировать ключ'; }, 2000);
-            }).catch(() => alert('Не удалось скопировать. Скопируй вручную.'));
-        }
-
-        // Отправка по Enter
         document.getElementById('linkInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') startBypass();
         });
